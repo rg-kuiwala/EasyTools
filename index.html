@@ -3,85 +3,167 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>EasyTools - MultiTool Website</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <title>Multi-Tool Converter | Convert Units, Files, and More</title>
+  <meta name="description" content="Convert units, files, currencies, and more with our easy-to-use multi-tool converter. Fast, accurate, and free!">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    /* General Styles */
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      background-color: #f4f4f9;
+      color: #333;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* Header */
+    header {
+      background: #4CAF50;
+      color: white;
+      padding: 2rem 0;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+    }
+
+    header p {
+      margin: 0.5rem 0 0;
+      font-size: 1.2rem;
+    }
+
+    /* Tool Sections */
+    .tool-section {
+      background: white;
+      padding: 1.5rem;
+      margin: 1.5rem 0;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .tool-section h2 {
+      margin-top: 0;
+      font-size: 1.8rem;
+      color: #4CAF50;
+    }
+
+    .converter {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .converter input, .converter select, .converter button {
+      padding: 0.5rem;
+      font-size: 1rem;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+    }
+
+    .converter button {
+      background: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    .converter button:hover {
+      background: #45a049;
+    }
+
+    #unitResult, #currencyResult {
+      font-weight: bold;
+      margin-top: 1rem;
+    }
+
+    /* Footer */
+    footer {
+      background: #333;
+      color: white;
+      text-align: center;
+      padding: 1rem 0;
+      margin-top: 2rem;
+    }
+  </style>
 </head>
 <body>
   <!-- Header -->
   <header>
     <div class="container">
-      <h1>EasyTools 🛠️</h1>
-      <nav>
-        <ul>
-          <li><a href="#image-resizer">Image Resizer</a></li>
-          <li><a href="#loan-calculator">Loan Calculator</a></li>
-          <li><a href="#length-converter">Length Converter</a></li>
-          <li><a href="#currency-converter">Currency Converter</a></li>
-        </ul>
-      </nav>
+      <h1>Multi-Tool Converter</h1>
+      <p>Convert Anything, Anytime!</p>
     </div>
   </header>
 
   <!-- Main Content -->
   <main class="container">
-    <!-- Image Resizer -->
-    <section id="image-resizer" class="tool">
-      <h2><i class="fas fa-image"></i> Image Resizer</h2>
-      <div class="tool-content">
-        <input type="file" id="imageInput" accept="image/*">
-        <canvas id="imageCanvas"></canvas>
-        <button onclick="resizeImage()">Resize Image</button>
-      </div>
-    </section>
-
-    <!-- Loan Calculator -->
-    <section id="loan-calculator" class="tool">
-      <h2><i class="fas fa-calculator"></i> Loan Calculator</h2>
-      <div class="tool-content">
-        <label for="loanAmount">Loan Amount ($):</label>
-        <input type="number" id="loanAmount" placeholder="Enter loan amount">
-        <label for="interestRate">Interest Rate (%):</label>
-        <input type="number" id="interestRate" placeholder="Enter interest rate">
-        <label for="loanTerm">Loan Term (years):</label>
-        <input type="number" id="loanTerm" placeholder="Enter loan term">
-        <button onclick="calculateLoan()">Calculate</button>
-        <p id="loanResult"></p>
-      </div>
-    </section>
-
-    <!-- Length Converter -->
-    <section id="length-converter" class="tool">
-      <h2><i class="fas fa-ruler"></i> Length Converter</h2>
-      <div class="tool-content">
-        <input type="number" id="lengthInput" placeholder="Enter length">
-        <select id="lengthUnit">
+    <!-- Unit Converter -->
+    <section class="tool-section">
+      <h2>Unit Converter</h2>
+      <div class="converter">
+        <input type="number" id="unitInput" placeholder="Enter value">
+        <select id="unitFrom">
+          <option value="celsius">Celsius</option>
+          <option value="fahrenheit">Fahrenheit</option>
           <option value="meters">Meters</option>
           <option value="feet">Feet</option>
-          <option value="inches">Inches</option>
         </select>
-        <button onclick="convertLength()">Convert</button>
-        <p id="lengthResult"></p>
+        <span>to</span>
+        <select id="unitTo">
+          <option value="fahrenheit">Fahrenheit</option>
+          <option value="celsius">Celsius</option>
+          <option value="feet">Feet</option>
+          <option value="meters">Meters</option>
+        </select>
+        <button id="convertUnitBtn">Convert</button>
+        <p id="unitResult">Result: </p>
       </div>
     </section>
 
     <!-- Currency Converter -->
-    <section id="currency-converter" class="tool">
-      <h2><i class="fas fa-money-bill-wave"></i> Currency Converter</h2>
-      <div class="tool-content">
-        <input type="number" id="currencyAmount" placeholder="Enter amount">
-        <select id="fromCurrency">
+    <section class="tool-section">
+      <h2>Currency Converter</h2>
+      <div class="converter">
+        <input type="number" id="currencyInput" placeholder="Enter amount">
+        <select id="currencyFrom">
           <option value="USD">USD</option>
           <option value="EUR">EUR</option>
           <option value="GBP">GBP</option>
+          <option value="INR">INR</option>
         </select>
-        <select id="toCurrency">
-          <option value="USD">USD</option>
+        <span>to</span>
+        <select id="currencyTo">
           <option value="EUR">EUR</option>
+          <option value="USD">USD</option>
           <option value="GBP">GBP</option>
+          <option value="INR">INR</option>
         </select>
-        <button onclick="convertCurrency()">Convert</button>
-        <p id="currencyResult"></p>
+        <button id="convertCurrencyBtn">Convert</button>
+        <p id="currencyResult">Result: </p>
+      </div>
+    </section>
+
+    <!-- File Converter -->
+    <section class="tool-section">
+      <h2>File Converter</h2>
+      <div class="converter">
+        <input type="file" id="fileInput" accept=".jpg, .png">
+        <select id="fileFormat">
+          <option value="jpg">JPG</option>
+          <option value="png">PNG</option>
+        </select>
+        <button id="convertFileBtn">Convert</button>
+        <a id="downloadLink" style="display: none;">Download Converted File</a>
       </div>
     </section>
   </main>
@@ -89,10 +171,70 @@
   <!-- Footer -->
   <footer>
     <div class="container">
-      <p>&copy; 2023 EasyTools. Built with ❤️ by <a href="https://github.com/rg-kuiwala" target="_blank">Rg Kuiwala</a>.</p>
+      <p>&copy; 2023 Multi-Tool Converter. All rights reserved.</p>
     </div>
   </footer>
 
-  <script src="script.js"></script>
+  <script>
+    // Unit Converter
+    document.getElementById('convertUnitBtn').addEventListener('click', () => {
+      const inputValue = parseFloat(document.getElementById('unitInput').value);
+      const fromUnit = document.getElementById('unitFrom').value;
+      const toUnit = document.getElementById('unitTo').value;
+      let result;
+
+      if (fromUnit === 'celsius' && toUnit === 'fahrenheit') {
+        result = (inputValue * 9/5) + 32;
+      } else if (fromUnit === 'fahrenheit' && toUnit === 'celsius') {
+        result = (inputValue - 32) * 5/9;
+      } else if (fromUnit === 'meters' && toUnit === 'feet') {
+        result = inputValue * 3.28084;
+      } else if (fromUnit === 'feet' && toUnit === 'meters') {
+        result = inputValue / 3.28084;
+      } else {
+        result = inputValue; // If units are the same
+      }
+
+      document.getElementById('unitResult').innerText = `Result: ${result.toFixed(2)} ${toUnit}`;
+    });
+
+    // Currency Converter (Mock API)
+    document.getElementById('convertCurrencyBtn').addEventListener('click', () => {
+      const inputAmount = parseFloat(document.getElementById('currencyInput').value);
+      const fromCurrency = document.getElementById('currencyFrom').value;
+      const toCurrency = document.getElementById('currencyTo').value;
+
+      // Mock conversion rates (replace with real API)
+      const rates = {
+        USD: { EUR: 0.85, GBP: 0.73, INR: 74.5 },
+        EUR: { USD: 1.18, GBP: 0.86, INR: 88.2 },
+        GBP: { USD: 1.37, EUR: 1.16, INR: 102.5 },
+        INR: { USD: 0.013, EUR: 0.011, GBP: 0.0098 }
+      };
+
+      const result = inputAmount * rates[fromCurrency][toCurrency];
+      document.getElementById('currencyResult').innerText = `Result: ${result.toFixed(2)} ${toCurrency}`;
+    });
+
+    // File Converter (Mock Conversion)
+    document.getElementById('convertFileBtn').addEventListener('click', () => {
+      const fileInput = document.getElementById('fileInput');
+      const format = document.getElementById('fileFormat').value;
+
+      if (fileInput.files.length > 0) {
+        const file = fileInput.files[0];
+        const fileName = file.name.split('.')[0] + '.' + format;
+        const downloadLink = document.getElementById('downloadLink');
+
+        // Mock file conversion (replace with actual conversion logic)
+        downloadLink.href = URL.createObjectURL(file);
+        downloadLink.download = fileName;
+        downloadLink.style.display = 'block';
+        downloadLink.innerText = `Download ${fileName}`;
+      } else {
+        alert('Please select a file first!');
+      }
+    });
+  </script>
 </body>
 </html>

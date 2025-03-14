@@ -1,19 +1,74 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width">
-  <title>replit</title>
-  <link href="style.css" rel="stylesheet" type="text/css" />
- 
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MultiTool Website</title>
+  <link rel="stylesheet" href="style.css">
+</head>
 <body>
-  <canvas></canvas>
-  <div>आप सभी को Happy Holi 🌅🌺🌿</div>
-  <div>Digital होली खेलने के लिए स्क्रीन touch करें 🎁🌿💝🥰</div>
-  <p>( Digital Holi By RG Kuiwala  )</P>
+  <header>
+    <h1>MultiTool Website</h1>
+  </header>
+
+  <main>
+    <!-- Image Resizer -->
+    <section class="tool">
+      <h2>Image Resizer</h2>
+      <input type="file" id="imageInput" accept="image/*">
+      <canvas id="imageCanvas"></canvas>
+      <button onclick="resizeImage()">Resize Image</button>
+    </section>
+
+    <!-- Loan Calculator -->
+    <section class="tool">
+      <h2>Loan Calculator</h2>
+      <label for="loanAmount">Loan Amount ($):</label>
+      <input type="number" id="loanAmount" placeholder="Enter loan amount">
+      <label for="interestRate">Interest Rate (%):</label>
+      <input type="number" id="interestRate" placeholder="Enter interest rate">
+      <label for="loanTerm">Loan Term (years):</label>
+      <input type="number" id="loanTerm" placeholder="Enter loan term">
+      <button onclick="calculateLoan()">Calculate</button>
+      <p id="loanResult"></p>
+    </section>
+
+    <!-- Length Converter -->
+    <section class="tool">
+      <h2>Length Converter</h2>
+      <input type="number" id="lengthInput" placeholder="Enter length">
+      <select id="lengthUnit">
+        <option value="meters">Meters</option>
+        <option value="feet">Feet</option>
+        <option value="inches">Inches</option>
+      </select>
+      <button onclick="convertLength()">Convert</button>
+      <p id="lengthResult"></p>
+    </section>
+
+    <!-- Currency Converter -->
+    <section class="tool">
+      <h2>Currency Converter</h2>
+      <input type="number" id="currencyAmount" placeholder="Enter amount">
+      <select id="fromCurrency">
+        <option value="USD">USD</option>
+        <option value="EUR">EUR</option>
+        <option value="GBP">GBP</option>
+      </select>
+      <select id="toCurrency">
+        <option value="USD">USD</option>
+        <option value="EUR">EUR</option>
+        <option value="GBP">GBP</option>
+      </select>
+      <button onclick="convertCurrency()">Convert</button>
+      <p id="currencyResult"></p>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2023 MultiTool Website</p>
+  </footer>
 
   <script src="script.js"></script>
 </body>
-
 </html>

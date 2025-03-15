@@ -1,240 +1,267 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Multi-Tool Converter | Convert Units, Files, and More</title>
-  <meta name="description" content="Convert units, files, currencies, and more with our easy-to-use multi-tool converter. Fast, accurate, and free!">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-  <style>
-    /* General Styles */
-    body {
-      font-family: 'Poppins', sans-serif;
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      background-color: #f4f4f9;
-      color: #333;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Latest news updates on politics, technology, entertainment, and sports.">
+    <meta name="keywords" content="news, politics, technology, entertainment, sports">
+    <meta name="author" content="News24Echo">
+    <title>News24Echo - Latest News Updates</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f9f9f9;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
 
-    .container {
-      width: 90%;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
+        /* Header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background: #333;
+            color: #fff;
+        }
+        header .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        header nav ul {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+        header nav ul li {
+            margin: 0 10px;
+        }
+        header nav ul li a {
+            color: #fff;
+            font-size: 16px;
+        }
 
-    /* Header */
-    header {
-      background: #4CAF50;
-      color: white;
-      padding: 2rem 0;
-      text-align: center;
-    }
+        /* Breaking News Widget */
+        .breaking-news {
+            background: #ff0000;
+            color: #fff;
+            padding: 10px;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        .breaking-news marquee a {
+            color: #fff;
+            margin-right: 20px;
+        }
 
-    header h1 {
-      margin: 0;
-      font-size: 2.5rem;
-    }
+        /* Main Content */
+        .container {
+            display: flex;
+            padding: 20px;
+        }
+        .post-grid {
+            flex: 3;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+        .post {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        .post img {
+            width: 100%;
+            height: auto;
+        }
+        .post h2 {
+            font-size: 18px;
+            margin: 10px;
+        }
+        .post h2 a {
+            color: #333;
+        }
+        .tags {
+            margin: 10px;
+        }
+        .tag {
+            display: inline-block;
+            background: #ff0000;
+            color: #fff;
+            padding: 5px 10px;
+            margin: 5px;
+            border-radius: 5px;
+            font-size: 14px;
+        }
 
-    header p {
-      margin: 0.5rem 0 0;
-      font-size: 1.2rem;
-    }
+        /* Sidebar */
+        .sidebar {
+            flex: 1;
+            padding: 20px;
+            background: #f4f4f4;
+            margin-left: 20px;
+        }
+        .widget {
+            margin-bottom: 20px;
+        }
+        .widget h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        .widget ul {
+            list-style: none;
+            padding: 0;
+        }
+        .widget ul li {
+            margin: 10px 0;
+        }
+        .widget ul li a {
+            color: #333;
+        }
 
-    /* Tool Sections */
-    .tool-section {
-      background: white;
-      padding: 1.5rem;
-      margin: 1.5rem 0;
-      border-radius: 8px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
+        /* Footer */
+        footer {
+            background: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        .footer-menu ul {
+            list-style: none;
+            padding: 0;
+        }
+        .footer-menu ul li {
+            display: inline;
+            margin: 0 10px;
+        }
+        .footer-menu ul li a {
+            color: #fff;
+        }
+        .social-icons a {
+            color: #fff;
+            margin: 0 10px;
+            font-size: 20px;
+        }
 
-    .tool-section h2 {
-      margin-top: 0;
-      font-size: 1.8rem;
-      color: #4CAF50;
-    }
-
-    .converter {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-      align-items: center;
-    }
-
-    .converter input, .converter select, .converter button {
-      padding: 0.5rem;
-      font-size: 1rem;
-      border: 1px solid #ddd;
-      border-radius: 4px;
-    }
-
-    .converter button {
-      background: #4CAF50;
-      color: white;
-      border: none;
-      cursor: pointer;
-    }
-
-    .converter button:hover {
-      background: #45a049;
-    }
-
-    #unitResult, #currencyResult {
-      font-weight: bold;
-      margin-top: 1rem;
-    }
-
-    /* Footer */
-    footer {
-      background: #333;
-      color: white;
-      text-align: center;
-      padding: 1rem 0;
-      margin-top: 2rem;
-    }
-  </style>
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .post-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .container {
+                flex-direction: column;
+            }
+            .sidebar {
+                margin-left: 0;
+                margin-top: 20px;
+            }
+        }
+        @media (max-width: 480px) {
+            .post-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
-  <!-- Header -->
-  <header>
-    <div class="container">
-      <h1>Multi-Tool Converter</h1>
-      <p>Convert Anything, Anytime!</p>
+    <!-- Header -->
+    <header>
+        <div class="logo">News24Echo</div>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Politics</a></li>
+                <li><a href="#">Technology</a></li>
+                <li><a href="#">Entertainment</a></li>
+                <li><a href="#">Sports</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Breaking News Widget -->
+    <div class="breaking-news">
+        <span>Breaking News:</span>
+        <marquee behavior="scroll" direction="left" onmouseover="this.stop();" onmouseout="this.start();">
+            <a href="#">Breaking News 1</a> | 
+            <a href="#">Breaking News 2</a> | 
+            <a href="#">Breaking News 3</a>
+        </marquee>
     </div>
-  </header>
 
-  <!-- Main Content -->
-  <main class="container">
-    <!-- Unit Converter -->
-    <section class="tool-section">
-      <h2>Unit Converter</h2>
-      <div class="converter">
-        <input type="number" id="unitInput" placeholder="Enter value">
-        <select id="unitFrom">
-          <option value="celsius">Celsius</option>
-          <option value="fahrenheit">Fahrenheit</option>
-          <option value="meters">Meters</option>
-          <option value="feet">Feet</option>
-        </select>
-        <span>to</span>
-        <select id="unitTo">
-          <option value="fahrenheit">Fahrenheit</option>
-          <option value="celsius">Celsius</option>
-          <option value="feet">Feet</option>
-          <option value="meters">Meters</option>
-        </select>
-        <button id="convertUnitBtn">Convert</button>
-        <p id="unitResult">Result: </p>
-      </div>
-    </section>
-
-    <!-- Currency Converter -->
-    <section class="tool-section">
-      <h2>Currency Converter</h2>
-      <div class="converter">
-        <input type="number" id="currencyInput" placeholder="Enter amount">
-        <select id="currencyFrom">
-          <option value="USD">USD</option>
-          <option value="EUR">EUR</option>
-          <option value="GBP">GBP</option>
-          <option value="INR">INR</option>
-        </select>
-        <span>to</span>
-        <select id="currencyTo">
-          <option value="EUR">EUR</option>
-          <option value="USD">USD</option>
-          <option value="GBP">GBP</option>
-          <option value="INR">INR</option>
-        </select>
-        <button id="convertCurrencyBtn">Convert</button>
-        <p id="currencyResult">Result: </p>
-      </div>
-    </section>
-
-    <!-- File Converter -->
-    <section class="tool-section">
-      <h2>File Converter</h2>
-      <div class="converter">
-        <input type="file" id="fileInput" accept=".jpg, .png">
-        <select id="fileFormat">
-          <option value="jpg">JPG</option>
-          <option value="png">PNG</option>
-        </select>
-        <button id="convertFileBtn">Convert</button>
-        <a id="downloadLink" style="display: none;">Download Converted File</a>
-      </div>
-    </section>
-  </main>
-
-  <!-- Footer -->
-  <footer>
+    <!-- Main Content -->
     <div class="container">
-      <p>&copy; 2023 Multi-Tool Converter. All rights reserved.</p>
+        <!-- Post Grid -->
+        <main class="post-grid">
+            <div class="post">
+                <img src="https://via.placeholder.com/300x200" alt="Post 1">
+                <h2><a href="#">Post Title 1</a></h2>
+                <div class="tags">
+                    <a href="#" class="tag">Politics</a>
+                    <a href="#" class="tag">News</a>
+                </div>
+            </div>
+            <div class="post">
+                <img src="https://via.placeholder.com/300x200" alt="Post 2">
+                <h2><a href="#">Post Title 2</a></h2>
+                <div class="tags">
+                    <a href="#" class="tag">Technology</a>
+                </div>
+            </div>
+            <!-- Add more posts here -->
+        </main>
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="widget">
+                <h3>Popular Posts</h3>
+                <ul>
+                    <li><a href="#">Post 1</a></li>
+                    <li><a href="#">Post 2</a></li>
+                    <li><a href="#">Post 3</a></li>
+                </ul>
+            </div>
+            <div class="widget">
+                <h3>You May Like It</h3>
+                <ul>
+                    <li><a href="#">Post 4</a></li>
+                    <li><a href="#">Post 5</a></li>
+                    <li><a href="#">Post 6</a></li>
+                </ul>
+            </div>
+            <div class="widget">
+                <h3>Categories</h3>
+                <ul>
+                    <li><a href="#">Politics</a></li>
+                    <li><a href="#">Technology</a></li>
+                    <li><a href="#">Entertainment</a></li>
+                </ul>
+            </div>
+        </aside>
     </div>
-  </footer>
 
-  <script>
-    // Unit Converter
-    document.getElementById('convertUnitBtn').addEventListener('click', () => {
-      const inputValue = parseFloat(document.getElementById('unitInput').value);
-      const fromUnit = document.getElementById('unitFrom').value;
-      const toUnit = document.getElementById('unitTo').value;
-      let result;
-
-      if (fromUnit === 'celsius' && toUnit === 'fahrenheit') {
-        result = (inputValue * 9/5) + 32;
-      } else if (fromUnit === 'fahrenheit' && toUnit === 'celsius') {
-        result = (inputValue - 32) * 5/9;
-      } else if (fromUnit === 'meters' && toUnit === 'feet') {
-        result = inputValue * 3.28084;
-      } else if (fromUnit === 'feet' && toUnit === 'meters') {
-        result = inputValue / 3.28084;
-      } else {
-        result = inputValue; // If units are the same
-      }
-
-      document.getElementById('unitResult').innerText = `Result: ${result.toFixed(2)} ${toUnit}`;
-    });
-
-    // Currency Converter (Mock API)
-    document.getElementById('convertCurrencyBtn').addEventListener('click', () => {
-      const inputAmount = parseFloat(document.getElementById('currencyInput').value);
-      const fromCurrency = document.getElementById('currencyFrom').value;
-      const toCurrency = document.getElementById('currencyTo').value;
-
-      // Mock conversion rates (replace with real API)
-      const rates = {
-        USD: { EUR: 0.85, GBP: 0.73, INR: 74.5 },
-        EUR: { USD: 1.18, GBP: 0.86, INR: 88.2 },
-        GBP: { USD: 1.37, EUR: 1.16, INR: 102.5 },
-        INR: { USD: 0.013, EUR: 0.011, GBP: 0.0098 }
-      };
-
-      const result = inputAmount * rates[fromCurrency][toCurrency];
-      document.getElementById('currencyResult').innerText = `Result: ${result.toFixed(2)} ${toCurrency}`;
-    });
-
-    // File Converter (Mock Conversion)
-    document.getElementById('convertFileBtn').addEventListener('click', () => {
-      const fileInput = document.getElementById('fileInput');
-      const format = document.getElementById('fileFormat').value;
-
-      if (fileInput.files.length > 0) {
-        const file = fileInput.files[0];
-        const fileName = file.name.split('.')[0] + '.' + format;
-        const downloadLink = document.getElementById('downloadLink');
-
-        // Mock file conversion (replace with actual conversion logic)
-        downloadLink.href = URL.createObjectURL(file);
-        downloadLink.download = fileName;
-        downloadLink.style.display = 'block';
-        downloadLink.innerText = `Download ${fileName}`;
-      } else {
-        alert('Please select a file first!');
-      }
-    });
-  </script>
+    <!-- Footer -->
+    <footer>
+        <div class="footer-menu">
+            <ul>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Contact Us</a></li>
+            </ul>
+        </div>
+        <div class="social-icons">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+    </footer>
 </body>
 </html>
